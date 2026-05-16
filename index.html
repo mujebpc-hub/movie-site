@@ -1,435 +1,601 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>MYMOVIES</title>
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial,sans-serif;
         }
 
-        body {
-            background: #0f0f0f;
-            color: white;
+        body{
+            background:#0f0f0f;
+            color:white;
         }
 
         /* =========================
            NAVBAR
         ========================== */
-        .navbar {
-            width: 100%;
-            background: #111;
-            padding: 18px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 999;
-            border-bottom: 1px solid #222;
+
+        .navbar{
+
+            width:100%;
+
+            background:#111;
+
+            padding:18px 40px;
+
+            display:flex;
+
+            justify-content:space-between;
+
+            align-items:center;
+
+            position:sticky;
+
+            top:0;
+
+            z-index:999;
+
+            border-bottom:1px solid #222;
         }
 
-        .logo {
-            font-size: 38px;
-            font-weight: bold;
-            color: #7ac943;
+        .logo{
+
+            font-size:38px;
+
+            font-weight:bold;
+
+            color:#7ac943;
         }
 
-        .menu {
-            display: flex;
-            gap: 30px;
+        .menu{
+
+            display:flex;
+
+            gap:30px;
         }
 
-        .menu a {
-            text-decoration: none;
-            color: white;
-            font-size: 15px;
-            font-weight: bold;
-            transition: 0.3s;
+        .menu a{
+
+            text-decoration:none;
+
+            color:white;
+
+            font-size:15px;
+
+            font-weight:bold;
+
+            transition:0.3s;
         }
 
-        .menu a:hover {
-            color: #7ac943;
+        .menu a:hover{
+
+            color:#7ac943;
         }
 
-        .search-box {
-            display: flex;
+        .search-box{
+
+            display:flex;
         }
 
-        .search-box input {
-            width: 250px;
-            padding: 12px;
-            border: none;
-            outline: none;
-            background: #222;
-            color: white;
+        .search-box input{
+
+            width:250px;
+
+            padding:12px;
+
+            border:none;
+
+            outline:none;
+
+            background:#222;
+
+            color:white;
         }
 
-        .search-box button {
-            padding: 12px 20px;
-            border: none;
-            background: #7ac943;
-            color: white;
-            cursor: pointer;
+        .search-box button{
+
+            padding:12px 20px;
+
+            border:none;
+
+            background:#7ac943;
+
+            color:white;
+
+            cursor:pointer;
         }
 
         /* =========================
            HOME BANNER
         ========================== */
-        .home-banner {
-            width: 100%;
-            padding: 80px 30px;
-            text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('poster.png');
-            background-size: cover;
-            background-position: center;
+
+        .home-banner{
+
+            width:100%;
+
+            padding:100px 30px;
+
+            text-align:center;
+
+            background:linear-gradient(to right,#111,#1d1d1d);
         }
 
-        .home-banner h1 {
-            font-size: 65px;
-            margin-bottom: 20px;
+        .home-banner h1{
+
+            font-size:65px;
+
+            margin-bottom:20px;
         }
 
-        .home-banner p {
-            max-width: 700px;
-            margin: auto;
-            color: #ccc;
-            line-height: 30px;
-            font-size: 18px;
-        }
+        .home-banner p{
 
-        /* =========================
-           MOVIE SECTION
-        ========================== */
-        .section {
-            padding: 50px 40px;
-        }
+            max-width:700px;
 
-        .section-title {
-            font-size: 35px;
-            margin-bottom: 30px;
-        }
+            margin:auto;
 
-        /* =========================
-           MOVIE GRID (फिक्स्ड लेआउट)
-        ========================== */
-        .movie-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* auto-fit को auto-fill से बदला */
-            gap: 25px;
-            width: 100%;
+            color:#ccc;
+
+            line-height:30px;
+
+            font-size:18px;
         }
 
         /* =========================
-           MOVIE CARD (होवर प्ले बटन इफ़ेक्ट के साथ)
+           SECTION
         ========================== */
-        .movie-card {
-            background: #1b1b1b;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
+
+        .section{
+
+            padding:50px 40px;
         }
 
-        .movie-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 20px rgba(122, 201, 67, 0.3); /* ग्रीन ग्लो इफ़ेक्ट */
-        }
+        .section-title{
 
-        /* इमेज कंटेनर जहाँ प्ले बटन दिखेगा */
-        .poster-wrapper {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 2/3; /* परफेक्ट मूवी पोस्टर साइज */
-            overflow: hidden;
-            background: #222;
-        }
+            font-size:35px;
 
-        .movie-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: filter 0.3s;
-        }
-
-        /* होवर करने पर इमेज के ऊपर आने वाला प्ले बटन */
-        .play-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .movie-card:hover .play-overlay {
-            opacity: 1;
-        }
-
-        .movie-card:hover img {
-            filter: blur(2px);
-        }
-
-        .play-icon-btn {
-            background: #7ac943;
-            color: black;
-            border: none;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            font-size: 22px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(122, 201, 67, 0.5);
-            transition: transform 0.2s;
-        }
-
-        .play-icon-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .movie-info {
-            padding: 15px;
-            text-align: center;
-        }
-
-        .movie-info h3 {
-            margin-bottom: 5px;
-            font-size: 16px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .movie-category {
-            font-size: 12px;
-            color: #7ac943;
-            text-transform: uppercase;
-            font-weight: bold;
+            margin-bottom:30px;
         }
 
         /* =========================
-           VIDEO MODAL (पॉप-अप प्लेयर)
+           MOVIE GRID
         ========================== */
-        .movie-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            padding: 20px;
-        }
 
-        .modal-content {
-            width: 100%;
-            max-width: 900px;
-            position: relative;
-        }
+        .movie-grid{
 
-        .modal-content video {
-            width: 100%;
-            border-radius: 10px;
-            background: black;
-            box-shadow: 0 0 30px rgba(122, 201, 67, 0.2);
-        }
+            display:grid;
 
-        .close-btn {
-            position: absolute;
-            top: -45px;
-            right: 0;
-            color: white;
-            font-size: 35px;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 
-        .close-btn:hover {
-            color: #7ac943;
+            gap:25px;
         }
 
         /* =========================
-           MOBILE RESPONSIVE
+           MOVIE CARD
         ========================== */
+
+        .movie-card{
+
+            background:#1b1b1b;
+
+            border-radius:12px;
+
+            overflow:hidden;
+
+            transition:0.3s;
+        }
+
+        .movie-card:hover{
+
+            transform:translateY(-8px);
+
+            box-shadow:0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .movie-card img{
+
+            width:100%;
+
+            height:320px;
+
+            object-fit:cover;
+        }
+
+        .movie-info{
+
+            padding:15px;
+        }
+
+        .movie-info h3{
+
+            margin-bottom:15px;
+
+            font-size:20px;
+        }
+
+        .watch-btn{
+
+            width:100%;
+
+            padding:12px;
+
+            border:none;
+
+            background:#7ac943;
+
+            color:white;
+
+            cursor:pointer;
+
+            border-radius:5px;
+
+            font-size:16px;
+        }
+
+        /* =========================
+           VIDEO MODAL
+        ========================== */
+
+        .movie-modal{
+
+            position:fixed;
+
+            top:0;
+
+            left:0;
+
+            width:100%;
+
+            height:100%;
+
+            background:rgba(0,0,0,0.95);
+
+            display:none;
+
+            justify-content:center;
+
+            align-items:center;
+
+            z-index:9999;
+
+            padding:20px;
+        }
+
+        .modal-content{
+
+            width:100%;
+
+            max-width:1000px;
+
+            position:relative;
+        }
+
+        .modal-content video{
+
+            width:100%;
+
+            border-radius:15px;
+
+            background:black;
+        }
+
+        .close-btn{
+
+            position:absolute;
+
+            top:-50px;
+
+            right:0;
+
+            color:white;
+
+            font-size:40px;
+
+            cursor:pointer;
+        }
+
+        /* =========================
+           MOBILE
+        ========================== */
+
         @media(max-width:768px){
-            .navbar {
-                flex-direction: column;
-                gap: 20px;
-                padding: 15px;
+
+            .navbar{
+
+                flex-direction:column;
+
+                gap:20px;
             }
-            .menu {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 15px;
+
+            .menu{
+
+                flex-wrap:wrap;
+
+                justify-content:center;
             }
-            .home-banner h1 {
-                font-size: 40px;
+
+            .home-banner h1{
+
+                font-size:40px;
             }
-            .search-box input {
-                width: 180px;
+
+            .search-box input{
+
+                width:180px;
             }
-            .section {
-                padding: 30px 20px;
-            }
+
         }
+
     </style>
+
 </head>
+
 <body>
 
-    <!-- NAVBAR -->
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
     <div class="navbar">
-        <div class="logo" onclick="filterCategory('all')" style="cursor:pointer;">MYMOVIES</div>
+
+        <div class="logo">
+            MYMOVIES
+        </div>
+
         <div class="menu">
-            <a href="#" onclick="filterCategory('all')">HOME</a>
-            <a href="#" onclick="filterCategory('Bollywood')">BOLLYWOOD</a>
-            <a href="#" onclick="filterCategory('Hollywood')">HOLLYWOOD</a>
-            <a href="#" onclick="filterCategory('Series')">SERIES</a>
-            <a href="#" onclick="filterCategory('Trending')">TRENDING</a>
+
+            <a href="#">HOME</a>
+
+            <a href="#">BOLLYWOOD</a>
+
+            <a href="#">HOLLYWOOD</a>
+
+            <a href="#">SERIES</a>
+
+            <a href="#">TRENDING</a>
+
         </div>
+
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Search movies..." onkeyup="searchMovies()">
-            <button onclick="searchMovies()">Search</button>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search movies..."
+            >
+
+            <button onclick="searchMovies()">
+                Search
+            </button>
+
         </div>
+
     </div>
 
-    <!-- HOME BANNER -->
+    <!-- =========================
+         HOME BANNER
+    ========================== -->
+
     <div class="home-banner">
-        <h1>Watch Movies Online</h1>
-        <p>Stream your favorite movies and songs online in HD quality with a modern movie experience.</p>
+
+        <h1>
+            Watch Movies Online
+        </h1>
+
+        <p>
+
+            Stream your favorite movies and songs online in HD quality
+            with a modern movie experience.
+
+        </p>
+
     </div>
 
-    <!-- MOVIE SECTION -->
+    <!-- =========================
+         MOVIE SECTION
+    ========================== -->
+
     <div class="section">
-        <h2 class="section-title" id="sectionTitle">Latest Uploads</h2>
-        <div class="movie-grid" id="movieGrid"></div>
+
+        <h2 class="section-title">
+            Latest Uploads
+        </h2>
+
+        <div
+            class="movie-grid"
+            id="movieGrid"
+        ></div>
+
     </div>
 
-    <!-- VIDEO MODAL PLAYER -->
-    <div class="movie-modal" id="movieModal">
+    <!-- =========================
+         VIDEO MODAL
+    ========================== -->
+
+    <div
+        class="movie-modal"
+        id="movieModal"
+    >
+
         <div class="modal-content">
-            <span class="close-btn" onclick="closeMovie()">✕</span>
-            <video id="moviePlayer" controls>
-                <source id="movieSource" src="" type="video/mp4">
-                Your browser does not support the video tag.
+
+            <span
+                class="close-btn"
+                onclick="closeMovie()"
+            >
+                ✕
+            </span>
+
+            <video
+                id="moviePlayer"
+                controls
+                autoplay
+            >
+
+                <source
+                    id="movieSource"
+                    src=""
+                    type="video/mp4"
+                >
+
             </video>
+
         </div>
+
     </div>
 
-    <!-- ========================= JAVASCRIPT ========================== -->
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
     <script>
-        // मूवी डेटाबेस एरे (भविष्य में नई मूवी यहाँ कॉमा लगाकर जोड़ें)
+
         let movieDatabase = [
-            { 
-                title: "Meri Kayenat", 
-                videoUrl: "meri kayenat.mp4", 
-                poster: "my private 765675.png",
-                category: "Bollywood"
-            },
-            { 
-                title: "Example Hollywood Action", 
-                videoUrl: "https://w3schools.com", /* डमी वीडियो टेस्टिंग के लिए */
-                poster: "https://unsplash.com", 
-                category: "Hollywood"
+
+            {
+
+                title:"Meri Kayenat",
+
+                videoUrl:"meri kayenat.mp4",
+
+                poster:"my private 765675.png"
+
             }
+
         ];
 
-        /* मूवी रेंडर करने का फ़ंक्शन */
-        function renderMovies(movies) {
-            const movieGrid = document.getElementById("movieGrid");
+
+        /* =========================
+           RENDER MOVIES
+        ========================== */
+
+        function renderMovies(movies){
+
+            const movieGrid =
+            document.getElementById("movieGrid");
+
             movieGrid.innerHTML = "";
 
-            if (movies.length === 0) {
-                movieGrid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: #666; padding: 40px; font-size: 18px;">कोई मूवी नहीं मिली!</div>`;
-                return;
-            }
-
-            movies.forEach((movie) => {
-                // सिंगल इनवर्टेड कॉमा एरर से बचने के लिए एस्केप करना
-                const safeTitle = movie.title.replace(/'/g, "\\'");
-                const safeUrl = movie.videoUrl.replace(/'/g, "\\'");
+            movies.forEach((movie)=>{
 
                 movieGrid.innerHTML += `
-                    <div class="movie-card" onclick="playMovie('${safeUrl}')">
-                        <div class="poster-wrapper">
-                            <img src="${movie.poster}" alt="${movie.title}">
-                            <div class="play-overlay">
-                                <button class="play-icon-btn">▶</button>
-                            </div>
-                        </div>
+
+                    <div class="movie-card">
+
+                        <img src="${movie.poster}">
+
                         <div class="movie-info">
+
                             <h3>${movie.title}</h3>
-                            <span class="movie-category">${movie.category || 'Movie'}</span>
+
+                            <button
+                                class="watch-btn"
+                                onclick="playMovie('${movie.videoUrl}')"
+                            >
+
+                                ▶ Watch Now
+
+                            </button>
+
                         </div>
+
                     </div>
+
                 `;
+
             });
+
         }
 
-        /* मूवी प्ले करने का फ़ंक्शन */
-        function playMovie(videoUrl) {
-            const modal = document.getElementById("movieModal");
-            const player = document.getElementById("moviePlayer");
-            const source = document.getElementById("movieSource");
 
-            source.src = videoUrl;
-            player.load(); // नया सोर्स लोड करना
+        /* =========================
+           PLAY MOVIE
+        ========================== */
+
+        function playMovie(videoPath){
+
+            const modal =
+            document.getElementById("movieModal");
+
+            const player =
+            document.getElementById("moviePlayer");
+
+            const source =
+            document.getElementById("movieSource");
+
+            source.src = videoPath;
+
+            player.load();
+
             modal.style.display = "flex";
-            player.play().catch(error => console.log("Autoplay blocked or link issue:", error));
+
         }
 
-        /* प्लेयर बंद करने का फ़ंक्शन */
-        function closeMovie() {
-            const modal = document.getElementById("movieModal");
-            const player = document.getElementById("moviePlayer");
-            
-            player.pause();
+
+        /* =========================
+           CLOSE MOVIE
+        ========================== */
+
+        function closeMovie(){
+
+            const modal =
+            document.getElementById("movieModal");
+
+            const player =
+            document.getElementById("moviePlayer");
+
             modal.style.display = "none";
+
+            player.pause();
+
         }
 
-        /* सर्च बार फ़ंक्शनलिटी */
-        function searchMovies() {
-            const query = document.getElementById("searchInput").value.toLowerCase();
-            const filtered = movieDatabase.filter(movie => 
-                movie.title.toLowerCase().includes(query)
+
+        /* =========================
+           SEARCH MOVIES
+        ========================== */
+
+        function searchMovies(){
+
+            const searchValue =
+            document
+            .getElementById("searchInput")
+            .value
+            .toLowerCase();
+
+            const filteredMovies =
+            movieDatabase.filter(movie =>
+
+                movie.title
+                .toLowerCase()
+                .includes(searchValue)
+
             );
-            renderMovies(filtered);
+
+            renderMovies(filteredMovies);
+
         }
 
-        /* कैटेगरी फ़िल्टर (Bollywood/Hollywood आदि) */
-        function filterCategory(category) {
-            const titleElement = document.getElementById("sectionTitle");
-            
-            if (category === 'all') {
-                titleElement.innerText = "Latest Uploads";
-                renderMovies(movieDatabase);
-            } else {
-                titleElement.innerText = category + " Movies";
-                const filtered = movieDatabase.filter(movie => movie.category === category);
-                renderMovies(filtered);
-            }
-        }
 
-        // वेबसाइट खुलते ही मूवीज लोड करना
-        window.onload = function() {
-            renderMovies(movieDatabase);
-        };
+        /* =========================
+           INITIAL LOAD
+        ========================== */
+
+        renderMovies(movieDatabase);
+
     </script>
+
 </body>
+
 </html>
