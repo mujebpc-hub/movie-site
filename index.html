@@ -1,97 +1,178 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- =========================
+     FIREBASE + LOGIN SYSTEM
+     IS PURE CODE KO
+     </body> SE JUST UPER PASTE KARO
+========================= -->
 
-<head>
+<!-- USER ACCOUNT BOX -->
+<div id="userBox" style="
+position:fixed;
+top:18px;
+right:20px;
+z-index:99999;
+display:flex;
+align-items:center;
+gap:12px;
+">
 
-<link rel="icon" type="image/png" href="ChatGPT Image May 16, 2026, 07_45_35 PM.png">
+    <!-- LOGIN BUTTON -->
+    <button id="loginBtn">
+        Login
+    </button>
 
-<meta charset="UTF-8">
+    <!-- USER PROFILE -->
+    <div id="userProfile">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <img
+            id="userPhoto"
+            src=""
+        >
 
-<title>MYMOVIES</title>
+        <div>
+
+            <div id="userName">
+                User
+            </div>
+
+            <div id="userCode">
+                ID0000
+            </div>
+
+        </div>
+
+        <button
+            class="logout-btn"
+            id="logoutBtn"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</div>
+
+<!-- LOGIN MODAL -->
+<div id="loginModal" style="
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.88);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999999;
+">
+
+<div style="
+width:350px;
+background:#111;
+padding:35px;
+border-radius:15px;
+text-align:center;
+border:1px solid #333;
+">
+
+    <h2 style="
+    margin-bottom:25px;
+    color:#7ac943;
+    ">
+        MYMOVIES LOGIN
+    </h2>
+
+    <button id="googleLoginBtn" style="
+    width:100%;
+    padding:14px;
+    border:none;
+    background:#7ac943;
+    color:white;
+    border-radius:6px;
+    font-size:16px;
+    cursor:pointer;
+    font-weight:bold;
+    ">
+        Continue With Google
+    </button>
+
+    <br><br>
+
+    <button onclick="
+    document.getElementById('loginModal').style.display='none'
+    " style="
+    background:none;
+    border:none;
+    color:#aaa;
+    cursor:pointer;
+    ">
+        Close
+    </button>
+
+</div>
+
+</div>
 
 <style>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
-
-body{
-    background:#0f0f0f;
-    color:white;
-}
-
 /* =========================
-   NAVBAR
+   PRIME VIDEO STYLE NAVBAR
 ========================= */
 
 .navbar{
-    width:100%;
-    background:#111;
-    padding:18px 40px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:1px solid #222;
-    position:sticky;
-    top:0;
-    z-index:999;
-    flex-wrap:wrap;
-    gap:15px;
-}
-
-.logo{
-    font-size:38px;
-    font-weight:bold;
-    color:#7ac943;
-}
-
-.menu{
-    display:flex;
-    gap:30px;
+    background:rgba(0,0,0,0.9);
+    backdrop-filter:blur(12px);
 }
 
 .menu button{
-    background:none;
-    border:none;
-    color:white;
-    font-size:15px;
-    font-weight:bold;
-    cursor:pointer;
+    position:relative;
+    transition:0.3s;
 }
 
 .menu button:hover{
-    color:#7ac943;
+    color:#fff;
+}
+
+.menu button::after{
+    content:'';
+    position:absolute;
+    bottom:-8px;
+    left:0;
+    width:0%;
+    height:2px;
+    background:#7ac943;
+    transition:0.3s;
+}
+
+.menu button:hover::after{
+    width:100%;
 }
 
 /* =========================
-   USER ACCOUNT
+   LOGIN BUTTON
 ========================= */
 
-#userBox{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
 #loginBtn{
-    padding:10px 18px;
+    padding:10px 20px;
     background:#7ac943;
     border:none;
     color:white;
-    border-radius:5px;
+    border-radius:6px;
     cursor:pointer;
     font-weight:bold;
+}
+
+#loginBtn:hover{
+    opacity:0.9;
 }
 
 #userProfile{
     display:none;
     align-items:center;
-    gap:10px;
+    gap:12px;
+    background:#111;
+    padding:8px 12px;
+    border-radius:50px;
+    border:1px solid #333;
 }
 
 #userPhoto{
@@ -113,7 +194,7 @@ body{
 }
 
 .logout-btn{
-    padding:8px 12px;
+    padding:8px 14px;
     background:red;
     border:none;
     color:white;
@@ -122,644 +203,102 @@ body{
 }
 
 /* =========================
-   SEARCH
+   LANGUAGE DROPDOWN
 ========================= */
 
-.search-box{
-    display:flex;
+.language-box{
+    position:fixed;
+    top:18px;
+    right:250px;
+    z-index:99999;
 }
 
-.search-box input{
-    width:250px;
-    padding:12px;
-    border:none;
-    outline:none;
-    background:#222;
+.language-box select{
+    padding:10px;
+    background:#111;
     color:white;
-}
-
-.search-box button{
-    padding:12px 20px;
-    border:none;
-    background:#7ac943;
-    color:white;
+    border:1px solid #333;
+    border-radius:5px;
     cursor:pointer;
 }
 
 /* =========================
-   BANNER
+   HERO GRADIENT
 ========================= */
 
 .home-banner{
-    width:100%;
-    height:420px;
-
-    background:
-    linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
-    url('ffhhh.png');
-
-    background-size:cover;
-    background-position:center;
-
-    display:flex;
-    align-items:center;
-    padding:60px;
+    position:relative;
+    overflow:hidden;
 }
 
-.banner-content{
-    max-width:600px;
-}
-
-.banner-content h1{
-    font-size:60px;
-    margin-bottom:20px;
-}
-
-.banner-content p{
-    color:#ddd;
-    line-height:30px;
-    margin-bottom:30px;
-}
-
-.banner-btn{
-    padding:15px 30px;
-    border:none;
-    background:#7ac943;
-    color:white;
-    font-size:18px;
-    border-radius:5px;
-    cursor:pointer;
+.home-banner::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+    to right,
+    rgba(0,0,0,0.95),
+    rgba(0,0,0,0.4),
+    transparent
+    );
 }
 
 /* =========================
-   MOVIES
+   NETFLIX STYLE MOVIE HOVER
 ========================= */
 
-.section{
-    padding:50px 40px;
-}
-
-.section-title{
-    font-size:35px;
-    margin-bottom:30px;
-}
-
-.movie-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:25px;
-}
-
 .movie-card{
-    background:#1b1b1b;
-    border-radius:12px;
-    overflow:hidden;
-    transition:0.3s;
+    transition:0.35s;
 }
 
 .movie-card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 10px 25px rgba(0,0,0,0.6);
-}
-
-.movie-poster{
-    width:100%;
-    height:320px;
-    object-fit:cover;
-}
-
-.movie-info{
-    padding:15px;
-}
-
-.movie-title{
-    font-size:20px;
-    margin-bottom:15px;
-}
-
-.watch-btn{
-    width:100%;
-    padding:12px;
-    border:none;
-    background:#7ac943;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
-    border-radius:5px;
+    transform:scale(1.05);
+    z-index:5;
 }
 
 /* =========================
-   VIDEO MODAL
+   PRIME VIDEO BUTTON
 ========================= */
 
-.movie-modal{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.95);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    z-index:9999;
-    padding:20px;
-}
-
-.modal-content{
-    width:100%;
-    max-width:1000px;
-    position:relative;
-}
-
-.modal-content video{
-    width:100%;
-    border-radius:12px;
-    background:black;
-}
-
-.close-btn{
-    position:absolute;
-    top:-50px;
-    right:0;
-    color:white;
-    font-size:40px;
-    cursor:pointer;
-}
-
-/* =========================
-   LOGIN MODAL
-========================= */
-
-#loginModal{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.92);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    z-index:999999;
-}
-
-.login-box{
-    width:90%;
-    max-width:400px;
-    background:#1b1b1b;
-    padding:30px;
-    border-radius:12px;
-}
-
-.login-box h2{
-    text-align:center;
-    margin-bottom:20px;
-}
-
-.login-box input{
-    width:100%;
-    padding:12px;
-    margin-bottom:12px;
-    background:#222;
-    border:none;
-    color:white;
-}
-
-.login-box button{
-    width:100%;
-    padding:12px;
-    border:none;
-    cursor:pointer;
-    margin-top:10px;
-    border-radius:5px;
-}
-
-.google-btn{
-    background:white;
-    color:black;
+.banner-btn{
+    background:#0f79af;
     font-weight:bold;
 }
 
-.email-btn{
-    background:#7ac943;
-    color:white;
-}
-
-.close-login{
-    background:red;
-    color:white;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:768px){
-
-    .navbar{
-        flex-direction:column;
-    }
-
-    .menu{
-        flex-wrap:wrap;
-        justify-content:center;
-    }
-
-    .home-banner{
-        height:auto;
-        padding:40px 20px;
-    }
-
-    .banner-content h1{
-        font-size:40px;
-    }
-
-    .search-box input{
-        width:180px;
-    }
-
+.watch-btn{
+    background:#0f79af;
+    font-weight:bold;
 }
 
 </style>
 
-</head>
+<!-- LANGUAGE SELECTOR -->
 
-<body>
+<div class="language-box">
 
-<!-- NAVBAR -->
+<select id="languageSelect">
 
-<div class="navbar">
+<option value="english">
+English
+</option>
 
-    <div class="logo">
-        MYMOVIES
-    </div>
+<option value="hindi">
+Hindi
+</option>
 
-    <div class="menu">
+<option value="urdu">
+Urdu
+</option>
 
-        <button onclick="filterCategory('all')">
-            HOME
-        </button>
-
-        <button onclick="filterCategory('bollywood')">
-            BOLLYWOOD
-        </button>
-
-        <button onclick="filterCategory('hollywood')">
-            HOLLYWOOD
-        </button>
-
-        <button onclick="filterCategory('song')">
-            SONGS
-        </button>
-
-    </div>
-
-    <!-- USER BOX -->
-
-    <div id="userBox">
-
-        <button
-        onclick="openLogin()"
-        id="loginBtn"
-        >
-            Login
-        </button>
-
-        <div id="userProfile">
-
-            <img
-            id="userPhoto"
-            src=""
-            >
-
-            <div>
-
-                <div id="userName">
-                    User
-                </div>
-
-                <div id="userCode">
-                    ID
-                </div>
-
-            </div>
-
-            <button
-            onclick="logoutUser()"
-            class="logout-btn"
-            >
-                Logout
-            </button>
-
-        </div>
-
-    </div>
-
-    <!-- SEARCH -->
-
-    <div class="search-box">
-
-        <input
-        type="text"
-        id="searchInput"
-        placeholder="Search movies..."
-        onkeyup="liveSearch()"
-        >
-
-        <button onclick="liveSearch()">
-            Search
-        </button>
-
-    </div>
+</select>
 
 </div>
-
-<!-- BANNER -->
-
-<div class="home-banner">
-
-    <div class="banner-content">
-
-        <h1>
-            Watch Movies Online
-        </h1>
-
-        <p>
-            Stream your favorite movies and songs online in HD quality.
-        </p>
-
-        <button
-        class="banner-btn"
-        onclick="playMovie('meri kayenat.mp4')"
-        >
-            ▶ Watch Now
-        </button>
-
-    </div>
-
-</div>
-
-<!-- MOVIES -->
-
-<div class="section">
-
-    <h2 class="section-title">
-        Latest Uploads
-    </h2>
-
-    <div
-    class="movie-grid"
-    id="movieGrid"
-    ></div>
-
-</div>
-
-<!-- VIDEO MODAL -->
-
-<div
-class="movie-modal"
-id="movieModal"
->
-
-    <div class="modal-content">
-
-        <span
-        class="close-btn"
-        onclick="closeMovie()"
-        >
-            ✕
-        </span>
-
-        <video
-        id="moviePlayer"
-        controls
-        autoplay
-        >
-
-            <source
-            id="movieSource"
-            src=""
-            type="video/mp4"
-            >
-
-        </video>
-
-    </div>
-
-</div>
-
-<!-- LOGIN MODAL -->
-
-<div id="loginModal">
-
-    <div class="login-box">
-
-        <h2>
-            User Login
-        </h2>
-
-        <button
-        id="googleLogin"
-        class="google-btn"
-        >
-            Continue With Google
-        </button>
-
-        <input
-        type="email"
-        id="email"
-        placeholder="Enter Email"
-        >
-
-        <input
-        type="password"
-        id="password"
-        placeholder="Enter Password"
-        >
-
-        <button
-        id="emailLogin"
-        class="email-btn"
-        >
-            Login / Register
-        </button>
-
-        <button
-        onclick="closeLogin()"
-        class="close-login"
-        >
-            Close
-        </button>
-
-    </div>
-
-</div>
-
-<!-- WEBSITE SCRIPT -->
-
-<script>
-
-let movieDatabase = [
-
-{
-title:"Meri Kayenat",
-category:"song",
-videoUrl:"meri kayenat.mp4",
-poster:"ffhhh.png"
-},
-
-{
-title:"yari",
-category:"song",
-videoUrl:"yari song.mp4",
-poster:"yari poster.png"
-},
-
-{
-title:"madam ji gunde",
-category:"hollywood",
-videoUrl:"gunda movie.mp4",
-poster:"avengers.png"
-}
-
-];
-
-function renderMovies(movies){
-
-const movieGrid =
-document.getElementById("movieGrid");
-
-movieGrid.innerHTML = "";
-
-if(movies.length === 0){
-
-movieGrid.innerHTML =
-`<h2>No Movie Found</h2>`;
-
-return;
-
-}
-
-movies.forEach((movie)=>{
-
-movieGrid.innerHTML += `
-
-<div class="movie-card">
-
-<img
-src="${movie.poster}"
-class="movie-poster"
->
-
-<div class="movie-info">
-
-<h3 class="movie-title">
-${movie.title}
-</h3>
-
-<button
-class="watch-btn"
-onclick="playMovie('${movie.videoUrl}')"
->
-▶ Watch Now
-</button>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-}
-
-function playMovie(videoPath){
-
-const modal =
-document.getElementById("movieModal");
-
-const player =
-document.getElementById("moviePlayer");
-
-const source =
-document.getElementById("movieSource");
-
-source.src = videoPath;
-
-player.load();
-
-modal.style.display = "flex";
-
-}
-
-function closeMovie(){
-
-const modal =
-document.getElementById("movieModal");
-
-const player =
-document.getElementById("moviePlayer");
-
-modal.style.display = "none";
-
-player.pause();
-
-}
-
-function liveSearch(){
-
-const searchValue =
-document
-.getElementById("searchInput")
-.value
-.toLowerCase()
-.trim();
-
-const filteredMovies =
-movieDatabase.filter((movie)=>
-
-movie.title
-.toLowerCase()
-.includes(searchValue)
-
-);
-
-renderMovies(filteredMovies);
-
-}
-
-function filterCategory(category){
-
-if(category === "all"){
-
-renderMovies(movieDatabase);
-
-}
-
-else{
-
-const filtered =
-movieDatabase.filter((movie)=>
-
-movie.category === category
-
-);
-
-renderMovies(filtered);
-
-}
-
-}
-
-renderMovies(movieDatabase);
-
-</script>
-
-<!-- FIREBASE AUTH -->
 
 <script type="module">
+
+/* =========================
+   FIREBASE IMPORTS
+========================= */
 
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
@@ -768,8 +307,6 @@ import {
 getAuth,
 GoogleAuthProvider,
 signInWithPopup,
-signInWithEmailAndPassword,
-createUserWithEmailAndPassword,
 signOut,
 onAuthStateChanged
 }
@@ -778,10 +315,13 @@ from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 import {
 getFirestore,
 doc,
-setDoc,
-getDoc
+setDoc
 }
 from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
 
 const firebaseConfig = {
 
@@ -793,191 +333,194 @@ projectId: "YOUR_PROJECT_ID",
 
 storageBucket: "YOUR_STORAGE_BUCKET",
 
-messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+messagingSenderId: "YOUR_SENDER_ID",
 
-appId: "YOUR_APP_ID",
-
-measurementId: "YOUR_MEASUREMENT_ID"
+appId: "YOUR_APP_ID"
 
 };
+
+/* =========================
+   INITIALIZE
+========================= */
 
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 
-const db = getFirestore(app);
-
 const provider = new GoogleAuthProvider();
 
-window.openLogin = function(){
+const db = getFirestore(app);
 
-document
-.getElementById("loginModal")
-.style.display = "flex";
+/* =========================
+   ELEMENTS
+========================= */
 
-}
+const loginBtn =
+document.getElementById("loginBtn");
 
-window.closeLogin = function(){
+const googleLoginBtn =
+document.getElementById("googleLoginBtn");
 
-document
-.getElementById("loginModal")
-.style.display = "none";
+const loginModal =
+document.getElementById("loginModal");
 
-}
+const logoutBtn =
+document.getElementById("logoutBtn");
 
-document
-.getElementById("googleLogin")
-.onclick = async ()=>{
+const userProfile =
+document.getElementById("userProfile");
+
+const userPhoto =
+document.getElementById("userPhoto");
+
+const userName =
+document.getElementById("userName");
+
+const userCode =
+document.getElementById("userCode");
+
+/* =========================
+   OPEN LOGIN
+========================= */
+
+loginBtn.onclick = ()=>{
+
+loginModal.style.display = "flex";
+
+};
+
+/* =========================
+   GOOGLE LOGIN
+========================= */
+
+googleLoginBtn.onclick = async ()=>{
 
 try{
 
 const result =
 await signInWithPopup(auth,provider);
 
-await saveUser(result.user);
+const user = result.user;
 
-}
-catch(error){
-
-alert(error.message);
-
-}
-
-};
-
-document
-.getElementById("emailLogin")
-.onclick = async ()=>{
-
-const email =
-document.getElementById("email").value;
-
-const password =
-document.getElementById("password").value;
-
-try{
-
-const result =
-await signInWithEmailAndPassword(
-auth,
-email,
-password
-);
-
-await saveUser(result.user);
-
-}
-catch{
-
-try{
-
-const result =
-await createUserWithEmailAndPassword(
-auth,
-email,
-password
-);
-
-await saveUser(result.user);
-
-}
-catch(error){
-
-alert(error.message);
-
-}
-
-}
-
-};
-
-async function saveUser(user){
-
-const userRef =
-doc(db,"users",user.uid);
-
-const snap =
-await getDoc(userRef);
-
-if(!snap.exists()){
-
-const userCode =
+const randomCode =
+"USER" +
 Math.floor(
-100000000 + Math.random()*900000000
+100000 + Math.random()*900000
 );
 
-await setDoc(userRef,{
+await setDoc(
 
-name:user.displayName || "User",
+doc(db,"users",user.uid),
 
-email:user.email || "",
+{
+name:user.displayName,
+email:user.email,
+photo:user.photoURL,
+userCode:randomCode,
+uid:user.uid
+}
 
-photo:user.photoURL || "",
+);
 
-userCode:userCode,
+loginModal.style.display = "none";
 
-createdAt:new Date()
-
-});
+alert("Login Successful");
 
 }
 
+catch(error){
+
+alert(error.message);
+
 }
 
-onAuthStateChanged(auth,async(user)=>{
+};
+
+/* =========================
+   USER STATE
+========================= */
+
+onAuthStateChanged(auth,(user)=>{
 
 if(user){
 
-document
-.getElementById("loginBtn")
-.style.display = "none";
+loginBtn.style.display = "none";
 
-document
-.getElementById("userProfile")
-.style.display = "flex";
+userProfile.style.display = "flex";
 
-document
-.getElementById("userName")
-.innerText =
-user.displayName || "User";
+userPhoto.src =
+user.photoURL;
 
-document
-.getElementById("userPhoto")
-.src =
-user.photoURL ||
-"https://cdn-icons-png.flaticon.com/512/149/149071.png";
+userName.innerText =
+user.displayName;
 
-const userRef =
-doc(db,"users",user.uid);
-
-const snap =
-await getDoc(userRef);
-
-if(snap.exists()){
-
-document
-.getElementById("userCode")
-.innerText =
-"ID: " + snap.data().userCode;
+userCode.innerText =
+"Verified User";
 
 }
 
-closeLogin();
+else{
+
+loginBtn.style.display = "block";
+
+userProfile.style.display = "none";
 
 }
 
 });
 
-window.logoutUser = async function(){
+/* =========================
+   LOGOUT
+========================= */
 
-await signOut(auth);
+logoutBtn.onclick = ()=>{
 
-location.reload();
+signOut(auth);
+
+};
+
+/* =========================
+   LANGUAGE CHANGE
+========================= */
+
+const languageSelect =
+document.getElementById("languageSelect");
+
+languageSelect.addEventListener(
+"change",
+()=>{
+
+const value =
+languageSelect.value;
+
+if(value === "hindi"){
+
+document.querySelector(
+".banner-content h1"
+).innerText =
+"ऑनलाइन मूवी देखें";
 
 }
 
+else if(value === "urdu"){
+
+document.querySelector(
+".banner-content h1"
+).innerText =
+"آن لائن مووی دیکھیں";
+
+}
+
+else{
+
+document.querySelector(
+".banner-content h1"
+).innerText =
+"Watch Movies Online";
+
+}
+
+}
+);
+
 </script>
-
-</body>
-
-</html>
