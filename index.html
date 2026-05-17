@@ -2,8 +2,11 @@
 <html lang="en">
 
 <head>
+
 <link rel="icon" type="image/png" href="ChatGPT Image May 16, 2026, 07_45_35 PM.png">
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>MYMOVIES</title>
@@ -37,6 +40,8 @@ body{
     position:sticky;
     top:0;
     z-index:999;
+    flex-wrap:wrap;
+    gap:15px;
 }
 
 .logo{
@@ -83,10 +88,6 @@ body{
     font-weight:bold;
 }
 
-#loginBtn:hover{
-    opacity:0.9;
-}
-
 #userProfile{
     display:none;
     align-items:center;
@@ -121,7 +122,7 @@ body{
 }
 
 /* =========================
-   SEARCH BOX
+   SEARCH
 ========================= */
 
 .search-box{
@@ -144,9 +145,9 @@ body{
     color:white;
     cursor:pointer;
 }
-    
+
 /* =========================
-   HOME BANNER
+   BANNER
 ========================= */
 
 .home-banner{
@@ -191,7 +192,7 @@ body{
 }
 
 /* =========================
-   MOVIE SECTION
+   MOVIES
 ========================= */
 
 .section{
@@ -203,19 +204,11 @@ body{
     margin-bottom:30px;
 }
 
-/* =========================
-   GRID
-========================= */
-
 .movie-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:25px;
 }
-
-/* =========================
-   MOVIE CARD
-========================= */
 
 .movie-card{
     background:#1b1b1b;
@@ -256,7 +249,7 @@ body{
 }
 
 /* =========================
-   MODAL PLAYER
+   VIDEO MODAL
 ========================= */
 
 .movie-modal{
@@ -295,6 +288,70 @@ body{
 }
 
 /* =========================
+   LOGIN MODAL
+========================= */
+
+#loginModal{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.92);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:999999;
+}
+
+.login-box{
+    width:90%;
+    max-width:400px;
+    background:#1b1b1b;
+    padding:30px;
+    border-radius:12px;
+}
+
+.login-box h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.login-box input{
+    width:100%;
+    padding:12px;
+    margin-bottom:12px;
+    background:#222;
+    border:none;
+    color:white;
+}
+
+.login-box button{
+    width:100%;
+    padding:12px;
+    border:none;
+    cursor:pointer;
+    margin-top:10px;
+    border-radius:5px;
+}
+
+.google-btn{
+    background:white;
+    color:black;
+    font-weight:bold;
+}
+
+.email-btn{
+    background:#7ac943;
+    color:white;
+}
+
+.close-login{
+    background:red;
+    color:white;
+}
+
+/* =========================
    MOBILE
 ========================= */
 
@@ -302,7 +359,6 @@ body{
 
     .navbar{
         flex-direction:column;
-        gap:20px;
     }
 
     .menu{
@@ -331,9 +387,7 @@ body{
 
 <body>
 
-<!-- =========================
-     NAVBAR
-========================= -->
+<!-- NAVBAR -->
 
 <div class="navbar">
 
@@ -361,13 +415,56 @@ body{
 
     </div>
 
+    <!-- USER BOX -->
+
+    <div id="userBox">
+
+        <button
+        onclick="openLogin()"
+        id="loginBtn"
+        >
+            Login
+        </button>
+
+        <div id="userProfile">
+
+            <img
+            id="userPhoto"
+            src=""
+            >
+
+            <div>
+
+                <div id="userName">
+                    User
+                </div>
+
+                <div id="userCode">
+                    ID
+                </div>
+
+            </div>
+
+            <button
+            onclick="logoutUser()"
+            class="logout-btn"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- SEARCH -->
+
     <div class="search-box">
 
         <input
-            type="text"
-            id="searchInput"
-            placeholder="Search movies..."
-            onkeyup="liveSearch()"
+        type="text"
+        id="searchInput"
+        placeholder="Search movies..."
+        onkeyup="liveSearch()"
         >
 
         <button onclick="liveSearch()">
@@ -378,9 +475,7 @@ body{
 
 </div>
 
-<!-- =========================
-     HOME BANNER
-========================= -->
+<!-- BANNER -->
 
 <div class="home-banner">
 
@@ -395,8 +490,8 @@ body{
         </p>
 
         <button
-            class="banner-btn"
-            onclick="playMovie('meri kayenat.mp4')"
+        class="banner-btn"
+        onclick="playMovie('meri kayenat.mp4')"
         >
             ▶ Watch Now
         </button>
@@ -405,9 +500,7 @@ body{
 
 </div>
 
-<!-- =========================
-     MOVIES
-========================= -->
+<!-- MOVIES -->
 
 <div class="section">
 
@@ -416,40 +509,38 @@ body{
     </h2>
 
     <div
-        class="movie-grid"
-        id="movieGrid"
+    class="movie-grid"
+    id="movieGrid"
     ></div>
 
 </div>
 
-<!-- =========================
-     VIDEO MODAL
-========================= -->
+<!-- VIDEO MODAL -->
 
 <div
-    class="movie-modal"
-    id="movieModal"
+class="movie-modal"
+id="movieModal"
 >
 
     <div class="modal-content">
 
         <span
-            class="close-btn"
-            onclick="closeMovie()"
+        class="close-btn"
+        onclick="closeMovie()"
         >
             ✕
         </span>
 
         <video
-            id="moviePlayer"
-            controls
-            autoplay
+        id="moviePlayer"
+        controls
+        autoplay
         >
 
             <source
-                id="movieSource"
-                src=""
-                type="video/mp4"
+            id="movieSource"
+            src=""
+            type="video/mp4"
             >
 
         </video>
@@ -458,216 +549,435 @@ body{
 
 </div>
 
-<!-- =========================
-     JAVASCRIPT
-========================= -->
+<!-- LOGIN MODAL -->
+
+<div id="loginModal">
+
+    <div class="login-box">
+
+        <h2>
+            User Login
+        </h2>
+
+        <button
+        id="googleLogin"
+        class="google-btn"
+        >
+            Continue With Google
+        </button>
+
+        <input
+        type="email"
+        id="email"
+        placeholder="Enter Email"
+        >
+
+        <input
+        type="password"
+        id="password"
+        placeholder="Enter Password"
+        >
+
+        <button
+        id="emailLogin"
+        class="email-btn"
+        >
+            Login / Register
+        </button>
+
+        <button
+        onclick="closeLogin()"
+        class="close-login"
+        >
+            Close
+        </button>
+
+    </div>
+
+</div>
+
+<!-- WEBSITE SCRIPT -->
 
 <script>
 
-/* =========================
-   MOVIE DATABASE
-========================= */
-
 let movieDatabase = [
 
-    {
-        title:"Meri Kayenat",
-        category:"song",
-        videoUrl:"meri kayenat.mp4",
-        poster:"ffhhh.png"
-    },
+{
+title:"Meri Kayenat",
+category:"song",
+videoUrl:"meri kayenat.mp4",
+poster:"ffhhh.png"
+},
 
-    {
-        title:"yari",
-        category:"song",
-        videoUrl:"yari song.mp4",
-        poster:"yari poster.png"
-    },
+{
+title:"yari",
+category:"song",
+videoUrl:"yari song.mp4",
+poster:"yari poster.png"
+},
 
-    {
-        title:"madam ji gunde",
-        category:"hollywood",
-        videoUrl:"gunda movie.mp4",
-        poster:"avengers.png"
-    }
+{
+title:"madam ji gunde",
+category:"hollywood",
+videoUrl:"gunda movie.mp4",
+poster:"avengers.png"
+}
 
 ];
 
-/* =========================
-   RENDER MOVIES
-========================= */
-
 function renderMovies(movies){
 
-    const movieGrid =
-    document.getElementById("movieGrid");
+const movieGrid =
+document.getElementById("movieGrid");
 
-    movieGrid.innerHTML = "";
+movieGrid.innerHTML = "";
 
-    if(movies.length === 0){
+if(movies.length === 0){
 
-        movieGrid.innerHTML = `
-            <h2>No Movie Found</h2>
-        `;
+movieGrid.innerHTML =
+`<h2>No Movie Found</h2>`;
 
-        return;
-    }
-
-    movies.forEach((movie)=>{
-
-        movieGrid.innerHTML += `
-
-            <div class="movie-card">
-
-                <img
-                    src="${movie.poster}"
-                    class="movie-poster"
-                >
-
-                <div class="movie-info">
-
-                    <h3 class="movie-title">
-                        ${movie.title}
-                    </h3>
-
-                    <button
-                        class="watch-btn"
-                        onclick="playMovie('${movie.videoUrl}')"
-                    >
-                        ▶ Watch Now
-                    </button>
-
-                </div>
-
-            </div>
-
-        `;
-
-    });
+return;
 
 }
 
-/* =========================
-   PLAY MOVIE
-========================= */
+movies.forEach((movie)=>{
+
+movieGrid.innerHTML += `
+
+<div class="movie-card">
+
+<img
+src="${movie.poster}"
+class="movie-poster"
+>
+
+<div class="movie-info">
+
+<h3 class="movie-title">
+${movie.title}
+</h3>
+
+<button
+class="watch-btn"
+onclick="playMovie('${movie.videoUrl}')"
+>
+▶ Watch Now
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
 
 function playMovie(videoPath){
 
-    const modal =
-    document.getElementById("movieModal");
+const modal =
+document.getElementById("movieModal");
 
-    const player =
-    document.getElementById("moviePlayer");
+const player =
+document.getElementById("moviePlayer");
 
-    const source =
-    document.getElementById("movieSource");
+const source =
+document.getElementById("movieSource");
 
-    source.src = videoPath;
+source.src = videoPath;
 
-    player.load();
+player.load();
 
-    modal.style.display = "flex";
+modal.style.display = "flex";
 
 }
-
-/* =========================
-   CLOSE MOVIE
-========================= */
 
 function closeMovie(){
 
-    const modal =
-    document.getElementById("movieModal");
+const modal =
+document.getElementById("movieModal");
 
-    const player =
-    document.getElementById("moviePlayer");
+const player =
+document.getElementById("moviePlayer");
 
-    modal.style.display = "none";
+modal.style.display = "none";
 
-    player.pause();
+player.pause();
 
 }
-
-/* =========================
-   LIVE SEARCH
-========================= */
 
 function liveSearch(){
 
-    const searchValue =
-    document
-    .getElementById("searchInput")
-    .value
-    .toLowerCase()
-    .trim();
+const searchValue =
+document
+.getElementById("searchInput")
+.value
+.toLowerCase()
+.trim();
 
-    const filteredMovies =
-    movieDatabase.filter((movie)=>
+const filteredMovies =
+movieDatabase.filter((movie)=>
 
-        movie.title
-        .toLowerCase()
-        .includes(searchValue)
+movie.title
+.toLowerCase()
+.includes(searchValue)
 
-    );
+);
 
-    renderMovies(filteredMovies);
+renderMovies(filteredMovies);
 
 }
-
-/* =========================
-   CATEGORY FILTER
-========================= */
 
 function filterCategory(category){
 
-    if(category === "all"){
+if(category === "all"){
 
-        renderMovies(movieDatabase);
-
-    }
-
-    else{
-
-        const filtered =
-        movieDatabase.filter((movie)=>
-
-            movie.category === category
-
-        );
-
-        renderMovies(filtered);
-
-    }
+renderMovies(movieDatabase);
 
 }
 
-/* =========================
-   INITIAL LOAD
-========================= */
+else{
+
+const filtered =
+movieDatabase.filter((movie)=>
+
+movie.category === category
+
+);
+
+renderMovies(filtered);
+
+}
+
+}
 
 renderMovies(movieDatabase);
 
 </script>
 
-   <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-analytics.js";
+<!-- FIREBASE AUTH -->
 
-  const firebaseConfig = {
-    apiKey: "...",
-    authDomain: "...",
-    projectId: "...",
-    storageBucket: "...",
-    messagingSenderId: "...",
-    appId: "...",
-    measurementId: "..."
-  };
+<script type="module">
 
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+import {
+getAuth,
+GoogleAuthProvider,
+signInWithPopup,
+signInWithEmailAndPassword,
+createUserWithEmailAndPassword,
+signOut,
+onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+import {
+getFirestore,
+doc,
+setDoc,
+getDoc
+}
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+const firebaseConfig = {
+
+apiKey: "YOUR_API_KEY",
+
+authDomain: "YOUR_AUTH_DOMAIN",
+
+projectId: "YOUR_PROJECT_ID",
+
+storageBucket: "YOUR_STORAGE_BUCKET",
+
+messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+
+appId: "YOUR_APP_ID",
+
+measurementId: "YOUR_MEASUREMENT_ID"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+const provider = new GoogleAuthProvider();
+
+window.openLogin = function(){
+
+document
+.getElementById("loginModal")
+.style.display = "flex";
+
+}
+
+window.closeLogin = function(){
+
+document
+.getElementById("loginModal")
+.style.display = "none";
+
+}
+
+document
+.getElementById("googleLogin")
+.onclick = async ()=>{
+
+try{
+
+const result =
+await signInWithPopup(auth,provider);
+
+await saveUser(result.user);
+
+}
+catch(error){
+
+alert(error.message);
+
+}
+
+};
+
+document
+.getElementById("emailLogin")
+.onclick = async ()=>{
+
+const email =
+document.getElementById("email").value;
+
+const password =
+document.getElementById("password").value;
+
+try{
+
+const result =
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+await saveUser(result.user);
+
+}
+catch{
+
+try{
+
+const result =
+await createUserWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+await saveUser(result.user);
+
+}
+catch(error){
+
+alert(error.message);
+
+}
+
+}
+
+};
+
+async function saveUser(user){
+
+const userRef =
+doc(db,"users",user.uid);
+
+const snap =
+await getDoc(userRef);
+
+if(!snap.exists()){
+
+const userCode =
+Math.floor(
+100000000 + Math.random()*900000000
+);
+
+await setDoc(userRef,{
+
+name:user.displayName || "User",
+
+email:user.email || "",
+
+photo:user.photoURL || "",
+
+userCode:userCode,
+
+createdAt:new Date()
+
+});
+
+}
+
+}
+
+onAuthStateChanged(auth,async(user)=>{
+
+if(user){
+
+document
+.getElementById("loginBtn")
+.style.display = "none";
+
+document
+.getElementById("userProfile")
+.style.display = "flex";
+
+document
+.getElementById("userName")
+.innerText =
+user.displayName || "User";
+
+document
+.getElementById("userPhoto")
+.src =
+user.photoURL ||
+"https://cdn-icons-png.flaticon.com/512/149/149071.png";
+
+const userRef =
+doc(db,"users",user.uid);
+
+const snap =
+await getDoc(userRef);
+
+if(snap.exists()){
+
+document
+.getElementById("userCode")
+.innerText =
+"ID: " + snap.data().userCode;
+
+}
+
+closeLogin();
+
+}
+
+});
+
+window.logoutUser = async function(){
+
+await signOut(auth);
+
+location.reload();
+
+}
+
 </script>
-    
+
 </body>
 
 </html>
