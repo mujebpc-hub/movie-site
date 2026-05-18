@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MYMOVIES</title>
+<title>MY MOVIE SPACE</title>
 
 <link rel="icon" type="image/png" href="ffhhh.png">
 
@@ -24,63 +24,74 @@
 }
 
 body{
-    background:#0f0f0f;
+    background:#00050d;
     color:white;
-    padding-top:80px;
+    padding-top:70px;
 }
 
 /* =========================
-   NAVBAR
+   PRIME VIDEO NAVBAR
 ========================= */
 
 .navbar{
     width:100%;
     height:70px;
-    background:#111;
+    background:#0f171e;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:0 40px;
+    padding:0 45px;
     position:fixed;
     top:0;
     left:0;
     z-index:9999;
-    border-bottom:1px solid #222;
+    border-bottom:1px solid rgba(255,255,255,0.05);
 }
 
 .logo{
-    font-size:34px;
+    font-size:30px;
     font-weight:bold;
     color:white;
 }
 
 .logo span{
-    color:#7ac943;
+    color:#00a8e1;
 }
 
 .menu{
     display:flex;
+    align-items:center;
     gap:25px;
 }
 
 .menu button{
     background:none;
     border:none;
-    color:#ccc;
+    color:#ffffffb3;
     font-size:15px;
-    font-weight:bold;
+    font-weight:600;
     cursor:pointer;
     transition:0.3s;
 }
 
 .menu button:hover{
-    color:#7ac943;
+    color:white;
+}
+
+.language-select{
+    background:#1a242f;
+    color:white;
+    border:none;
+    padding:10px 14px;
+    border-radius:6px;
+    cursor:pointer;
 }
 
 .search-box{
     display:flex;
-    background:#1b1b1b;
-    border-radius:6px;
+    align-items:center;
+    background:#1a242f;
+    border-radius:8px;
     overflow:hidden;
 }
 
@@ -96,23 +107,25 @@ body{
 .search-box button{
     padding:12px 18px;
     border:none;
-    background:#7ac943;
+    background:#00a8e1;
     color:white;
+    font-weight:bold;
     cursor:pointer;
 }
 
 /* =========================
-   BANNER
+   HOME BANNER
 ========================= */
 
 .home-banner{
     width:100%;
-    height:420px;
+    height:520px;
 
     background:
     linear-gradient(to right,
-    rgba(0,0,0,0.9),
-    rgba(0,0,0,0.4)),
+    rgba(0,0,0,0.95),
+    rgba(0,0,0,0.5),
+    rgba(0,0,0,0.1)),
     url('ffhhh.png');
 
     background-size:cover;
@@ -121,7 +134,7 @@ body{
     display:flex;
     align-items:center;
 
-    padding:60px;
+    padding:70px;
 }
 
 .banner-content{
@@ -129,7 +142,7 @@ body{
 }
 
 .banner-content h1{
-    font-size:60px;
+    font-size:65px;
     margin-bottom:20px;
 }
 
@@ -137,29 +150,31 @@ body{
     color:#ddd;
     line-height:30px;
     margin-bottom:30px;
+    font-size:18px;
 }
 
 .banner-btn{
-    padding:15px 30px;
+    padding:16px 35px;
     border:none;
-    background:#7ac943;
-    color:white;
+    background:white;
+    color:black;
     font-size:18px;
-    border-radius:6px;
+    font-weight:bold;
+    border-radius:8px;
     cursor:pointer;
 }
 
 /* =========================
-   SECTION
+   MOVIE SECTION
 ========================= */
 
 .section{
-    padding:50px 40px;
+    padding:40px;
 }
 
 .section-title{
-    font-size:35px;
-    margin-bottom:30px;
+    font-size:32px;
+    margin-bottom:25px;
 }
 
 /* =========================
@@ -168,7 +183,7 @@ body{
 
 .movie-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
     gap:25px;
 }
 
@@ -177,20 +192,19 @@ body{
 ========================= */
 
 .movie-card{
-    background:#1b1b1b;
-    border-radius:12px;
+    background:#1b2530;
+    border-radius:10px;
     overflow:hidden;
     transition:0.3s;
 }
 
 .movie-card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 10px 25px rgba(0,0,0,0.6);
+    transform:scale(1.05);
 }
 
 .movie-poster{
     width:100%;
-    height:320px;
+    height:330px;
     object-fit:cover;
 }
 
@@ -207,7 +221,7 @@ body{
     width:100%;
     padding:12px;
     border:none;
-    background:#2196f3;
+    background:#00a8e1;
     color:white;
     font-size:16px;
     border-radius:6px;
@@ -215,7 +229,7 @@ body{
 }
 
 /* =========================
-   MOVIE MODAL
+   VIDEO MODAL
 ========================= */
 
 .movie-modal{
@@ -248,8 +262,8 @@ body{
     position:absolute;
     top:-50px;
     right:0;
-    font-size:40px;
     color:white;
+    font-size:40px;
     cursor:pointer;
 }
 
@@ -272,7 +286,7 @@ body{
 
 .login-box{
     width:350px;
-    background:#1b1b1b;
+    background:#1b2530;
     padding:30px;
     border-radius:12px;
     text-align:center;
@@ -292,7 +306,7 @@ body{
     width:100%;
     padding:12px;
     border:none;
-    background:#7ac943;
+    background:#00a8e1;
     color:white;
     font-size:16px;
     border-radius:6px;
@@ -302,10 +316,10 @@ body{
 #fullName{
     width:100%;
     padding:12px;
+    margin-top:15px;
+    margin-bottom:15px;
     border:none;
     border-radius:6px;
-    margin-bottom:15px;
-    margin-top:15px;
 }
 
 /* =========================
@@ -320,9 +334,9 @@ body{
 
     .navbar{
         height:auto;
-        padding:20px;
         flex-direction:column;
         gap:20px;
+        padding:20px;
     }
 
     .menu{
@@ -336,7 +350,7 @@ body{
     }
 
     .banner-content h1{
-        font-size:40px;
+        font-size:42px;
     }
 
     .search-box input{
@@ -358,36 +372,48 @@ body{
 <div class="navbar">
 
     <div class="logo">
-        MY<span>MOVIES</span>
+        MY <span>MOVIE SPACE</span>
     </div>
 
     <div class="menu">
 
         <button onclick="filterCategory('all')">
-            HOME
+            Home
         </button>
 
         <button onclick="filterCategory('bollywood')">
-            BOLLYWOOD
+            Bollywood
         </button>
 
         <button onclick="filterCategory('hollywood')">
-            HOLLYWOOD
+            Hollywood
         </button>
 
         <button onclick="filterCategory('tollywood')">
-            TOLLYWOOD
+            Tollywood
         </button>
 
         <button onclick="filterCategory('south')">
-            SOUTH
+            South
         </button>
 
         <button onclick="filterCategory('song')">
-            SONGS
+            Songs
         </button>
 
     </div>
+
+    <select class="language-select">
+
+        <option>
+            ENG
+        </option>
+
+        <option>
+            HINDI
+        </option>
+
+    </select>
 
     <div class="search-box">
 
@@ -407,7 +433,7 @@ body{
 </div>
 
 <!-- =========================
-     HOME BANNER
+     BANNER
 ========================= -->
 
 <div class="home-banner">
@@ -419,7 +445,7 @@ body{
         </h1>
 
         <p>
-            Stream your favorite movies and songs online in HD quality.
+            Stream Bollywood, Hollywood, South movies and songs online in HD quality.
         </p>
 
         <button
@@ -434,7 +460,7 @@ body{
 </div>
 
 <!-- =========================
-     MOVIE SECTION
+     MOVIES
 ========================= -->
 
 <div class="section">
@@ -451,7 +477,7 @@ body{
 </div>
 
 <!-- =========================
-     VIDEO PLAYER MODAL
+     VIDEO PLAYER
 ========================= -->
 
 <div
@@ -490,13 +516,20 @@ body{
      LOGIN MODAL
 ========================= -->
 
-<div id="loginModal" class="login-modal">
+<div
+    id="loginModal"
+    class="login-modal"
+>
 
     <div class="login-box">
 
-        <h2>Login Required</h2>
+        <h2>
+            Login Required
+        </h2>
 
-        <p>Please login to watch movies</p>
+        <p>
+            Please login to continue
+        </p>
 
         <button
             id="googleLoginBtn"
@@ -546,50 +579,57 @@ let movieDatabase = [
     },
 
     {
-        title:"yari",
+        title:"Yari",
         category:"song",
         videoUrl:"yari song.mp4",
         poster:"yari poster.png"
     },
 
     {
-        title:"madam ji gunde",
+        title:"Madam Ji Gunde",
         category:"song",
         videoUrl:"gunda movie.mp4",
         poster:"avengers.png"
     },
 
     {
-        title:"satyammurti",
+        title:"Satyammurti",
         category:"tollywood",
         videoUrl:"default.mp4",
         poster:"default.jpg"
     },
 
     {
-        title:"housefull 5",
+        title:"Housefull 5",
         category:"bollywood",
         videoUrl:"default.mp4",
         poster:"default.jpg"
     },
 
     {
-        title:"kgf chapter 2",
+        title:"KGF Chapter 2",
         category:"south",
         videoUrl:"default.mp4",
         poster:"default.jpg"
     },
 
     {
-        title:"pushpa 2",
+        title:"Pushpa 2",
         category:"tollywood",
         videoUrl:"default.mp4",
         poster:"default.jpg"
     },
 
     {
-        title:"avengers endgame",
+        title:"Avengers Endgame",
         category:"hollywood",
+        videoUrl:"default.mp4",
+        poster:"default.jpg"
+    },
+
+    {
+        title:"Animal",
+        category:"bollywood",
         videoUrl:"default.mp4",
         poster:"default.jpg"
     }
@@ -783,7 +823,7 @@ document
 });
 
 /* =========================
-   AUTO LOGIN CHECK
+   AUTO LOGIN
 ========================= */
 
 const savedUser =
@@ -806,4 +846,5 @@ renderMovies(movieDatabase);
 </script>
 
 </body>
+
 </html>
