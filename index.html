@@ -252,12 +252,6 @@ body{
     position:relative;
 }
 
-.modal-content video{
-    width:100%;
-    border-radius:12px;
-    background:black;
-}
-
 .close-btn{
     position:absolute;
     top:-50px;
@@ -365,9 +359,7 @@ body{
 
 <body>
 
-<!-- =========================
-     NAVBAR
-========================= -->
+<!-- NAVBAR -->
 
 <div class="navbar">
 
@@ -405,13 +397,8 @@ body{
 
     <select class="language-select">
 
-        <option>
-            ENG
-        </option>
-
-        <option>
-            HINDI
-        </option>
+        <option>ENG</option>
+        <option>HINDI</option>
 
     </select>
 
@@ -432,9 +419,7 @@ body{
 
 </div>
 
-<!-- =========================
-     BANNER
-========================= -->
+<!-- BANNER -->
 
 <div class="home-banner">
 
@@ -459,9 +444,7 @@ body{
 
 </div>
 
-<!-- =========================
-     MOVIES
-========================= -->
+<!-- MOVIES -->
 
 <div class="section">
 
@@ -476,9 +459,7 @@ body{
 
 </div>
 
-<!-- =========================
-     VIDEO PLAYER
-========================= -->
+<!-- VIDEO PLAYER -->
 
 <div
     class="movie-modal"
@@ -494,27 +475,13 @@ body{
             ✕
         </span>
 
-        <video
-            id="moviePlayer"
-            controls
-            autoplay
-        >
-
-            <source
-                id="movieSource"
-                src=""
-                type="video/mp4"
-            >
-
-        </video>
+        <div id="playerContainer"></div>
 
     </div>
 
 </div>
 
-<!-- =========================
-     LOGIN MODAL
-========================= -->
+<!-- LOGIN -->
 
 <div
     id="loginModal"
@@ -559,10 +526,6 @@ body{
 
 </div>
 
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
 <script>
 
 /* =========================
@@ -593,44 +556,20 @@ let movieDatabase = [
     },
 
     {
-        title:"Satyammurti",
-        category:"tollywood",
-        videoUrl:"default.mp4",
-        poster:"default.jpg"
-    },
-
-    {
-        title:"Housefull 5",
-        category:"bollywood",
-        videoUrl:"default.mp4",
-        poster:"default.jpg"
-    },
-
-    {
-        title:"KGF Chapter 2",
-        category:"south",
-        videoUrl:"default.mp4",
-        poster:"default.jpg"
-    },
-
-    {
         title:"Pushpa 2",
         category:"tollywood",
-        videoUrl:"default.mp4",
-        poster:"default.jpg"
-    },
 
-    {
-        title:"Avengers Endgame",
-        category:"hollywood",
-        videoUrl:"default.mp4",
+        videoUrl:"https://drive.google.com/file/d/10BdVjLetH_2rOT8md0roVHPIkZSK2XiS/preview",
+
         poster:"default.jpg"
     },
 
     {
         title:"Animal",
         category:"bollywood",
-        videoUrl:"default.mp4",
+
+        videoUrl:"https://drive.google.com/file/d/10BdVjLetH_2rOT8md0roVHPIkZSK2XiS/preview",
+
         poster:"default.jpg"
     }
 
@@ -698,17 +637,58 @@ function playMovie(videoPath){
     const modal =
     document.getElementById("movieModal");
 
-    const player =
-    document.getElementById("moviePlayer");
-
-    const source =
-    document.getElementById("movieSource");
-
-    source.src = videoPath;
-
-    player.load();
+    const container =
+    document.getElementById("playerContainer");
 
     modal.style.display = "flex";
+
+    // GOOGLE DRIVE
+    if(videoPath.includes("drive.google.com")){
+
+        container.innerHTML = `
+
+        <iframe
+            src="${videoPath}"
+            width="100%"
+            height="550"
+            allow="autoplay"
+            allowfullscreen
+            style="
+                border:none;
+                border-radius:12px;
+                background:black;
+            ">
+        </iframe>
+
+        `;
+
+    }
+
+    // MP4
+    else{
+
+        container.innerHTML = `
+
+        <video
+            width="100%"
+            controls
+            autoplay
+            style="
+                border-radius:12px;
+                background:black;
+            "
+        >
+
+            <source
+                src="${videoPath}"
+                type="video/mp4"
+            >
+
+        </video>
+
+        `;
+
+    }
 
 }
 
@@ -721,12 +701,12 @@ function closeMovie(){
     const modal =
     document.getElementById("movieModal");
 
-    const player =
-    document.getElementById("moviePlayer");
+    const container =
+    document.getElementById("playerContainer");
 
     modal.style.display = "none";
 
-    player.pause();
+    container.innerHTML = "";
 
 }
 
@@ -845,30 +825,5 @@ renderMovies(movieDatabase);
 
 </script>
 
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyBxf8UpDKcgyjborhumZkTSXllUjsYXZC0",
-    authDomain: "my-deta-center-mujeb-122.firebaseapp.com",
-    projectId: "my-deta-center-mujeb-122",
-    storageBucket: "my-deta-center-mujeb-122.firebasestorage.app",
-    messagingSenderId: "722991037380",
-    appId: "1:722991037380:web:7e0322c4ccd0d22fe90291",
-    measurementId: "G-CCYZRM16C6"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
-   
 </body>
-
 </html>
