@@ -26,32 +26,30 @@
 body{
     background:#00050d;
     color:white;
-    padding-top:70px;
+    padding-top:80px;
 }
 
 /* =========================
-   PRIME VIDEO NAVBAR
+   NAVBAR
 ========================= */
 
 .navbar{
+    position:fixed;
+    top:0;
+    left:0;
     width:100%;
-    height:70px;
+    height:80px;
     background:#0f171e;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:0 45px;
-    position:fixed;
-    top:0;
-    left:0;
-    z-index:9999;
-    border-bottom:1px solid rgba(255,255,255,0.05);
+    padding:0 40px;
+    z-index:99999;
 }
 
 .logo{
-    font-size:30px;
+    font-size:32px;
     font-weight:bold;
-    color:white;
 }
 
 .logo span{
@@ -60,61 +58,47 @@ body{
 
 .menu{
     display:flex;
-    align-items:center;
-    gap:25px;
+    gap:20px;
 }
 
 .menu button{
     background:none;
     border:none;
-    color:#ffffffb3;
-    font-size:15px;
-    font-weight:600;
+    color:#ccc;
     cursor:pointer;
-    transition:0.3s;
+    font-size:16px;
 }
 
 .menu button:hover{
     color:white;
 }
 
-.language-select{
-    background:#1a242f;
-    color:white;
-    border:none;
-    padding:10px 14px;
-    border-radius:6px;
-    cursor:pointer;
-}
-
 .search-box{
     display:flex;
-    align-items:center;
-    background:#1a242f;
+    background:#1b2530;
     border-radius:8px;
     overflow:hidden;
 }
 
 .search-box input{
-    width:220px;
-    padding:12px;
     border:none;
-    outline:none;
     background:transparent;
     color:white;
+    padding:12px;
+    width:220px;
+    outline:none;
 }
 
 .search-box button{
-    padding:12px 18px;
     border:none;
     background:#00a8e1;
     color:white;
-    font-weight:bold;
+    padding:12px 20px;
     cursor:pointer;
 }
 
 /* =========================
-   HOME BANNER
+   BANNER
 ========================= */
 
 .home-banner{
@@ -123,9 +107,8 @@ body{
 
     background:
     linear-gradient(to right,
-    rgba(0,0,0,0.95),
-    rgba(0,0,0,0.5),
-    rgba(0,0,0,0.1)),
+    rgba(0,0,0,0.9),
+    rgba(0,0,0,0.4)),
     url('ffhhh.png');
 
     background-size:cover;
@@ -134,7 +117,7 @@ body{
     display:flex;
     align-items:center;
 
-    padding:70px;
+    padding:60px;
 }
 
 .banner-content{
@@ -142,30 +125,28 @@ body{
 }
 
 .banner-content h1{
-    font-size:65px;
+    font-size:70px;
     margin-bottom:20px;
 }
 
 .banner-content p{
-    color:#ddd;
     line-height:30px;
+    color:#ddd;
     margin-bottom:30px;
-    font-size:18px;
 }
 
 .banner-btn{
-    padding:16px 35px;
+    padding:15px 35px;
     border:none;
     background:white;
     color:black;
-    font-size:18px;
-    font-weight:bold;
     border-radius:8px;
+    font-size:18px;
     cursor:pointer;
 }
 
 /* =========================
-   MOVIE SECTION
+   SECTION
 ========================= */
 
 .section{
@@ -193,9 +174,10 @@ body{
 
 .movie-card{
     background:#1b2530;
-    border-radius:10px;
+    border-radius:12px;
     overflow:hidden;
     transition:0.3s;
+    position:relative;
 }
 
 .movie-card:hover{
@@ -223,13 +205,24 @@ body{
     border:none;
     background:#00a8e1;
     color:white;
-    font-size:16px;
-    border-radius:6px;
+    border-radius:8px;
     cursor:pointer;
 }
 
+.premium-badge{
+    position:absolute;
+    top:10px;
+    left:10px;
+    background:gold;
+    color:black;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
 /* =========================
-   VIDEO MODAL
+   PLAYER
 ========================= */
 
 .movie-modal{
@@ -242,13 +235,13 @@ body{
     display:none;
     justify-content:center;
     align-items:center;
-    z-index:99999;
+    z-index:999999;
     padding:20px;
 }
 
 .modal-content{
     width:100%;
-    max-width:1000px;
+    max-width:1100px;
     position:relative;
 }
 
@@ -256,13 +249,104 @@ body{
     position:absolute;
     top:-50px;
     right:0;
-    color:white;
-    font-size:40px;
+    font-size:45px;
     cursor:pointer;
 }
 
 /* =========================
-   LOGIN MODAL
+   CONTINUE WATCHING
+========================= */
+
+.continue-box{
+    margin:40px;
+    background:#101820;
+    padding:25px;
+    border-radius:12px;
+}
+
+/* =========================
+   HISTORY
+========================= */
+
+.history-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+}
+
+/* =========================
+   CHAT SYSTEM
+========================= */
+
+.chat-toggle{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:60px;
+    height:60px;
+    border:none;
+    border-radius:50%;
+    background:#00a8e1;
+    color:white;
+    font-size:26px;
+    cursor:pointer;
+    z-index:999999;
+}
+
+.chat-box{
+    position:fixed;
+    right:20px;
+    bottom:90px;
+    width:320px;
+    height:420px;
+    background:#1b2530;
+    border-radius:12px;
+    overflow:hidden;
+    display:none;
+    flex-direction:column;
+    z-index:999999;
+}
+
+.chat-header{
+    background:#00a8e1;
+    padding:15px;
+    font-weight:bold;
+}
+
+.chat-messages{
+    flex:1;
+    overflow-y:auto;
+    padding:15px;
+}
+
+.chat-message{
+    background:#273444;
+    padding:10px;
+    border-radius:8px;
+    margin-bottom:10px;
+}
+
+.chat-input-area{
+    display:flex;
+}
+
+.chat-input-area input{
+    flex:1;
+    padding:14px;
+    border:none;
+    outline:none;
+}
+
+.chat-input-area button{
+    width:90px;
+    border:none;
+    background:#00a8e1;
+    color:white;
+    cursor:pointer;
+}
+
+/* =========================
+   LOGIN
 ========================= */
 
 .login-modal{
@@ -271,11 +355,11 @@ body{
     left:0;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,0.9);
+    background:rgba(0,0,0,0.92);
     display:flex;
     justify-content:center;
     align-items:center;
-    z-index:100000;
+    z-index:1000000;
 }
 
 .login-box{
@@ -291,8 +375,8 @@ body{
 }
 
 .login-box p{
-    margin-bottom:20px;
     color:#ccc;
+    margin-bottom:20px;
 }
 
 .google-btn,
@@ -302,18 +386,16 @@ body{
     border:none;
     background:#00a8e1;
     color:white;
-    font-size:16px;
-    border-radius:6px;
+    border-radius:8px;
     cursor:pointer;
 }
 
 #fullName{
     width:100%;
     padding:12px;
-    margin-top:15px;
-    margin-bottom:15px;
+    margin:15px 0;
     border:none;
-    border-radius:6px;
+    border-radius:8px;
 }
 
 /* =========================
@@ -327,10 +409,10 @@ body{
     }
 
     .navbar{
-        height:auto;
         flex-direction:column;
-        gap:20px;
+        height:auto;
         padding:20px;
+        gap:20px;
     }
 
     .menu{
@@ -338,17 +420,13 @@ body{
         justify-content:center;
     }
 
-    .home-banner{
-        height:auto;
-        padding:40px 20px;
-    }
-
     .banner-content h1{
-        font-size:42px;
+        font-size:45px;
     }
 
-    .search-box input{
-        width:160px;
+    .home-banner{
+        padding:30px;
+        height:auto;
     }
 
 }
@@ -369,45 +447,20 @@ body{
 
     <div class="menu">
 
-        <button onclick="filterCategory('all')">
-            Home
-        </button>
-
-        <button onclick="filterCategory('bollywood')">
-            Bollywood
-        </button>
-
-        <button onclick="filterCategory('hollywood')">
-            Hollywood
-        </button>
-
-        <button onclick="filterCategory('tollywood')">
-            Tollywood
-        </button>
-
-        <button onclick="filterCategory('south')">
-            South
-        </button>
-
-        <button onclick="filterCategory('song')">
-            Songs
-        </button>
+        <button onclick="filterCategory('all')">Home</button>
+        <button onclick="filterCategory('bollywood')">Bollywood</button>
+        <button onclick="filterCategory('hollywood')">Hollywood</button>
+        <button onclick="filterCategory('tollywood')">Tollywood</button>
+        <button onclick="filterCategory('song')">Songs</button>
 
     </div>
-
-    <select class="language-select">
-
-        <option>ENG</option>
-        <option>HINDI</option>
-
-    </select>
 
     <div class="search-box">
 
         <input
             type="text"
             id="searchInput"
-            placeholder="Search movies..."
+            placeholder="Search Movies..."
             onkeyup="liveSearch()"
         >
 
@@ -430,17 +483,29 @@ body{
         </h1>
 
         <p>
-            Stream Bollywood, Hollywood, South movies and songs online in HD quality.
+            Stream Bollywood, Hollywood, Tollywood and songs online in HD quality.
         </p>
 
         <button
             class="banner-btn"
-            onclick="playMovie('meri kayenat.mp4')"
+            onclick="playMovie('meri kayenat.mp4','Meri Kayenat')"
         >
             ▶ Watch Now
         </button>
 
     </div>
+
+</div>
+
+<!-- CONTINUE WATCHING -->
+
+<div class="continue-box">
+
+    <h2>
+        Continue Watching
+    </h2>
+
+    <div id="continueWatching"></div>
 
 </div>
 
@@ -459,7 +524,22 @@ body{
 
 </div>
 
-<!-- VIDEO PLAYER -->
+<!-- HISTORY -->
+
+<div class="section">
+
+    <h2 class="section-title">
+        Watch History
+    </h2>
+
+    <div
+        class="history-grid"
+        id="historyGrid"
+    ></div>
+
+</div>
+
+<!-- PLAYER -->
 
 <div
     class="movie-modal"
@@ -484,8 +564,8 @@ body{
 <!-- LOGIN -->
 
 <div
-    id="loginModal"
     class="login-modal"
+    id="loginModal"
 >
 
     <div class="login-box">
@@ -495,14 +575,14 @@ body{
         </h2>
 
         <p>
-            Please login to continue
+            Continue to MY MOVIE SPACE
         </p>
 
         <button
-            id="googleLoginBtn"
             class="google-btn"
+            id="googleLoginBtn"
         >
-            Continue with Google
+            Continue
         </button>
 
         <div
@@ -526,6 +606,45 @@ body{
 
 </div>
 
+<!-- CHAT -->
+
+<button
+    class="chat-toggle"
+    onclick="toggleChat()"
+>
+💬
+</button>
+
+<div
+    class="chat-box"
+    id="chatBox"
+>
+
+    <div class="chat-header">
+        Live Chat
+    </div>
+
+    <div
+        class="chat-messages"
+        id="chatMessages"
+    ></div>
+
+    <div class="chat-input-area">
+
+        <input
+            type="text"
+            id="chatInput"
+            placeholder="Type message..."
+        >
+
+        <button onclick="sendMessage()">
+            Send
+        </button>
+
+    </div>
+
+</div>
+
 <script>
 
 /* =========================
@@ -534,54 +653,28 @@ body{
 
 let movieDatabase = [
 
-    {
-        title:"Meri Kayenat",
-        category:"song",
-        videoUrl:"meri kayenat.mp4",
-        poster:"ffhhh.png"
-    },
+{
+title:"Meri Kayenat",
+category:"song",
+videoUrl:"meri kayenat.mp4",
+poster:"ffhhh.png"
+},
 
-    {
-        title:"Yari",
-        category:"song",
-        videoUrl:"yari song.mp4",
-        poster:"yari poster.png"
-    },
+{
+title:"Pushpa 2",
+category:"tollywood",
+videoUrl:"https://drive.google.com/file/d/10BdVjLetH_2rOT8md0roVHPIkZSK2XiS/preview",
+poster:"default.jpg",
+premium:true
+},
 
-    {
-        title:"Madam Ji Gunde",
-        category:"song",
-        videoUrl:"gunda movie.mp4",
-        poster:"avengers.png"
-    },
+{
+title:"Animal",
+category:"bollywood",
+videoUrl:"https://drive.google.com/file/d/10BdVjLetH_2rOT8md0roVHPIkZSK2XiS/preview",
+poster:"default.jpg"
+}
 
-    {
-        title:"Pushpa 2",
-        category:"tollywood",
-
-        videoUrl:"https://drive.google.com/file/d/10BdVjLetH_2rOT8md0roVHPIkZSK2XiS/preview",
-
-        poster:"default.jpg"
-    },
-
-    {
-        title:"Animal",
-        category:"bollywood",
-
-        videoUrl:"https://drive.google.com/file/d/10BdVjLetH_2rOT8md0roVHPIkZSK2XiS/preview",
-
-        poster:"default.jpg"
-    },
-
-   {
-    title:"Your Movie Name",
-    category:"bollywood",
-
-    videoUrl:"https://drive.google.com/file/d/1maTQC8IDWZm6_HpTYAyGdyt5FI6Ks9NM/preview",
-
-    poster:"poster.jpg"
-  }
-   
 ];
 
 /* =========================
@@ -590,50 +683,47 @@ let movieDatabase = [
 
 function renderMovies(movies){
 
-    const movieGrid =
-    document.getElementById("movieGrid");
+const movieGrid =
+document.getElementById("movieGrid");
 
-    movieGrid.innerHTML = "";
+movieGrid.innerHTML = "";
 
-    if(movies.length === 0){
+movies.forEach((movie)=>{
 
-        movieGrid.innerHTML =
-        `<h2>No Movie Found</h2>`;
+movieGrid.innerHTML += `
 
-        return;
-    }
+<div class="movie-card">
 
-    movies.forEach((movie)=>{
+${movie.premium ?
+`<div class="premium-badge">PREMIUM</div>`
+: ""
+}
 
-        movieGrid.innerHTML += `
+<img
+src="${movie.poster}"
+class="movie-poster"
+>
 
-        <div class="movie-card">
+<div class="movie-info">
 
-            <img
-                src="${movie.poster}"
-                class="movie-poster"
-            >
+<h3 class="movie-title">
+${movie.title}
+</h3>
 
-            <div class="movie-info">
+<button
+class="watch-btn"
+onclick="playMovie('${movie.videoUrl}','${movie.title}')"
+>
+▶ Watch Now
+</button>
 
-                <h3 class="movie-title">
-                    ${movie.title}
-                </h3>
+</div>
 
-                <button
-                    class="watch-btn"
-                    onclick="playMovie('${movie.videoUrl}')"
-                >
-                    ▶ Watch Now
-                </button>
+</div>
 
-            </div>
+`;
 
-        </div>
-
-        `;
-
-    });
+});
 
 }
 
@@ -641,63 +731,70 @@ function renderMovies(movies){
    PLAY MOVIE
 ========================= */
 
-function playMovie(videoPath){
+function playMovie(videoPath,movieTitle){
 
-    const modal =
-    document.getElementById("movieModal");
+saveWatchHistory(movieTitle);
 
-    const container =
-    document.getElementById("playerContainer");
+renderHistory();
 
-    modal.style.display = "flex";
+const modal =
+document.getElementById("movieModal");
 
-    // GOOGLE DRIVE
-    if(videoPath.includes("drive.google.com")){
+const container =
+document.getElementById("playerContainer");
 
-        container.innerHTML = `
+modal.style.display = "flex";
 
-        <iframe
-            src="${videoPath}"
-            width="100%"
-            height="550"
-            allow="autoplay"
-            allowfullscreen
-            style="
-                border:none;
-                border-radius:12px;
-                background:black;
-            ">
-        </iframe>
+/* GOOGLE DRIVE */
 
-        `;
+if(videoPath.includes("drive.google.com")){
 
-    }
+container.innerHTML = `
 
-    // MP4
-    else{
+<iframe
+src="${videoPath}?autoplay=1"
+width="100%"
+height="600"
+allow="autoplay; fullscreen"
+allowfullscreen
+style="
+border:none;
+border-radius:12px;
+background:black;
+">
+</iframe>
 
-        container.innerHTML = `
+`;
 
-        <video
-            width="100%"
-            controls
-            autoplay
-            style="
-                border-radius:12px;
-                background:black;
-            "
-        >
+}
 
-            <source
-                src="${videoPath}"
-                type="video/mp4"
-            >
+/* MP4 */
 
-        </video>
+else{
 
-        `;
+container.innerHTML = `
 
-    }
+<video
+id="moviePlayer"
+width="100%"
+controls
+autoplay
+style="
+border-radius:12px;
+background:black;
+"
+>
+
+<source
+src="${videoPath}"
+type="video/mp4"
+>
+
+</video>
+
+`;
+
+}
 
 }
 
@@ -707,82 +804,189 @@ function playMovie(videoPath){
 
 function closeMovie(){
 
-    const modal =
-    document.getElementById("movieModal");
+document
+.getElementById("movieModal")
+.style.display = "none";
 
-    const container =
-    document.getElementById("playerContainer");
-
-    modal.style.display = "none";
-
-    container.innerHTML = "";
+document
+.getElementById("playerContainer")
+.innerHTML = "";
 
 }
 
 /* =========================
-   LIVE SEARCH
+   SEARCH
 ========================= */
 
 function liveSearch(){
 
-    const searchValue =
-    document
-    .getElementById("searchInput")
-    .value
-    .toLowerCase()
-    .trim();
+const value =
+document
+.getElementById("searchInput")
+.value
+.toLowerCase();
 
-    const filteredMovies =
-    movieDatabase.filter((movie)=>
+const filtered =
+movieDatabase.filter((movie)=>
 
-        movie.title
-        .toLowerCase()
-        .includes(searchValue)
+movie.title
+.toLowerCase()
+.includes(value)
 
-    );
+);
 
-    renderMovies(filteredMovies);
+renderMovies(filtered);
 
 }
 
 /* =========================
-   CATEGORY FILTER
+   CATEGORY
 ========================= */
 
 function filterCategory(category){
 
-    if(category === "all"){
+if(category === "all"){
 
-        renderMovies(movieDatabase);
+renderMovies(movieDatabase);
 
-    }
+}
 
-    else{
+else{
 
-        const filtered =
-        movieDatabase.filter((movie)=>
+const filtered =
+movieDatabase.filter((movie)=>
 
-            movie.category === category
+movie.category === category
 
-        );
+);
 
-        renderMovies(filtered);
+renderMovies(filtered);
 
-    }
+}
 
 }
 
 /* =========================
-   LOGIN SYSTEM
+   WATCH HISTORY
+========================= */
+
+function saveWatchHistory(movieTitle){
+
+let history =
+JSON.parse(
+localStorage.getItem("watchHistory")
+) || [];
+
+if(!history.includes(movieTitle)){
+
+history.unshift(movieTitle);
+
+localStorage.setItem(
+"watchHistory",
+JSON.stringify(history)
+);
+
+}
+
+}
+
+/* =========================
+   RENDER HISTORY
+========================= */
+
+function renderHistory(){
+
+const historyGrid =
+document.getElementById("historyGrid");
+
+let history =
+JSON.parse(
+localStorage.getItem("watchHistory")
+) || [];
+
+historyGrid.innerHTML = "";
+
+history.forEach((movie)=>{
+
+historyGrid.innerHTML += `
+
+<div class="movie-card">
+
+<div class="movie-info">
+
+<h3 class="movie-title">
+${movie}
+</h3>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+/* =========================
+   CHAT
+========================= */
+
+function toggleChat(){
+
+const chat =
+document.getElementById("chatBox");
+
+if(chat.style.display === "flex"){
+
+chat.style.display = "none";
+
+}
+
+else{
+
+chat.style.display = "flex";
+
+}
+
+}
+
+function sendMessage(){
+
+const input =
+document.getElementById("chatInput");
+
+const messages =
+document.getElementById("chatMessages");
+
+if(input.value.trim() === "") return;
+
+messages.innerHTML += `
+
+<div class="chat-message">
+${input.value}
+</div>
+
+`;
+
+input.value = "";
+
+messages.scrollTop =
+messages.scrollHeight;
+
+}
+
+/* =========================
+   LOGIN
 ========================= */
 
 document
 .getElementById("googleLoginBtn")
 .addEventListener("click",()=>{
 
-    document
-    .getElementById("userFormBox")
-    .style.display = "block";
+document
+.getElementById("userFormBox")
+.style.display = "block";
 
 });
 
@@ -790,39 +994,38 @@ document
 .getElementById("saveUserBtn")
 .addEventListener("click",()=>{
 
-    const name =
-    document.getElementById("fullName").value;
+const name =
+document.getElementById("fullName").value;
 
-    if(name.trim() === ""){
+if(name.trim() === ""){
 
-        alert("Please Enter Your Name");
+alert("Enter Your Name");
 
-        return;
-    }
+return;
 
-    localStorage.setItem(
-        "movieUser",
-        name
-    );
+}
 
-    document
-    .getElementById("loginModal")
-    .style.display = "none";
+localStorage.setItem(
+"movieUser",
+name
+);
+
+document
+.getElementById("loginModal")
+.style.display = "none";
 
 });
 
-/* =========================
-   AUTO LOGIN
-========================= */
+/* AUTO LOGIN */
 
 const savedUser =
 localStorage.getItem("movieUser");
 
 if(savedUser){
 
-    document
-    .getElementById("loginModal")
-    .style.display = "none";
+document
+.getElementById("loginModal")
+.style.display = "none";
 
 }
 
@@ -831,6 +1034,8 @@ if(savedUser){
 ========================= */
 
 renderMovies(movieDatabase);
+
+renderHistory();
 
 </script>
 
