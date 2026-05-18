@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MY MOVIE </title>
+<title>MY MOVIE SPACE</title>
 
 <link rel="icon" type="image/png" href="ChatGPT Image May 18, 2026, 01_05_09 PM.png">
 
@@ -480,64 +480,37 @@ body{
      VIDEO PLAYER
 ========================= -->
 
-<div class="movie-modal" id="movieModal">
+<div
+    class="movie-modal"
+    id="movieModal"
+>
+
     <div class="modal-content">
-        <span class="close-btn" onclick="closeMovie()">✕</span>
-        
-        <!-- Google Drive के लिए IFRAME use करें (बेहतर है) -->
-        <iframe
+
+        <span
+            class="close-btn"
+            onclick="closeMovie()"
+        >
+            ✕
+        </span>
+
+        <video
             id="moviePlayer"
-            width="100%"
-            height="600"
-            style="border-radius:12px;"
-            allow="autoplay"
-        ></iframe>
+            controls
+            autoplay
+        >
+
+            <source
+                id="movieSource"
+                src=""
+                type="video/mp4"
+            >
+
+        </video>
+
     </div>
+
 </div>
-
-<script>
-
-function playMovie(videoUrl){
-
-    let playerArea = document.getElementById("playerArea");
-
-    // GOOGLE DRIVE PREVIEW LINK CHECK
-    if(videoUrl.includes("drive.google.com")){
-
-        playerArea.innerHTML = `
-            <iframe
-                src="${videoUrl}"
-                width="100%"
-                height="500px"
-                allow="autoplay"
-                allowfullscreen
-                style="border:none;border-radius:10px;">
-            </iframe>
-        `;
-
-    }
-
-    // NORMAL MP4 VIDEO
-    else{
-
-        playerArea.innerHTML = `
-            <video
-                width="100%"
-                height="500px"
-                controls
-                autoplay
-                style="border-radius:10px; background:black;">
-
-                <source src="${videoUrl}" type="video/mp4">
-
-            </video>
-        `;
-
-    }
-
-}
-
-</script>
 
 <!-- =========================
      LOGIN MODAL
@@ -720,64 +693,22 @@ function renderMovies(movies){
    PLAY MOVIE
 ========================= */
 
-function playMovie(videoUrl){
+function playMovie(videoPath){
 
     const modal =
     document.getElementById("movieModal");
 
-    const playerArea =
-    document.getElementById("playerArea");
+    const player =
+    document.getElementById("moviePlayer");
+
+    const source =
+    document.getElementById("movieSource");
+
+    source.src = videoPath;
+
+    player.load();
 
     modal.style.display = "flex";
-
-    // GOOGLE DRIVE LINK
-    if(videoUrl.includes("drive.google.com")){
-
-        playerArea.innerHTML = `
-
-        <iframe
-            src="${videoUrl}"
-            width="100%"
-            height="600"
-            allow="autoplay"
-            allowfullscreen
-            style="
-                border:none;
-                border-radius:12px;
-                background:black;
-            ">
-        </iframe>
-
-        `;
-
-    }
-
-    // NORMAL MP4 VIDEO
-    else{
-
-        playerArea.innerHTML = `
-
-        <video
-            width="100%"
-            height="600"
-            controls
-            autoplay
-            style="
-                width:100%;
-                border-radius:12px;
-                background:black;
-            ">
-
-            <source
-                src="${videoUrl}"
-                type="video/mp4"
-            >
-
-        </video>
-
-        `;
-
-    }
 
 }
 
@@ -790,12 +721,12 @@ function closeMovie(){
     const modal =
     document.getElementById("movieModal");
 
-    const playerArea =
-    document.getElementById("playerArea");
+    const player =
+    document.getElementById("moviePlayer");
 
     modal.style.display = "none";
 
-    playerArea.innerHTML = "";
+    player.pause();
 
 }
 
