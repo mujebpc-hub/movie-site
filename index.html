@@ -753,6 +753,34 @@ poster:"poster.jpg"
 
 ];
 
+  let currentSlide = 0;
+
+function autoBanner(){
+
+const banner =
+document.querySelector(".home-banner");
+
+banner.style.background = `
+linear-gradient(to right,
+rgba(0,0,0,0.9),
+rgba(0,0,0,0.4)),
+url('${bannerSlides[currentSlide]}')
+`;
+
+banner.style.backgroundSize = "cover";
+banner.style.backgroundPosition = "center";
+
+currentSlide++;
+
+if(currentSlide >= bannerSlides.length){
+currentSlide = 0;
+}
+
+}
+
+setInterval(autoBanner,3000);
+
+autoBanner();
 /* =========================
 RENDER MOVIES
 ========================= */
