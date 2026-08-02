@@ -1223,10 +1223,30 @@ document
 INITIAL LOAD
 ========================= */
 
-renderMovies(movieDatabase);
+async function loadMovies() {
+
+    try {
+
+        const response = await fetch("http://localhost:3000/api/movies");
+
+        movieDatabase = await response.json();
+
+        renderMovies(movieDatabase);
+
+    } catch (err) {
+
+        console.error(err);
+
+        alert("Movie Server Offline");
+
+    }
+
+}
+
+loadMovies();
 
 renderHistory();
-
+  
 </script>
 
 </body>
